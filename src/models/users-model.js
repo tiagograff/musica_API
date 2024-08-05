@@ -13,6 +13,8 @@ const users = [
 
 //exportando métodos
 module.exports = {
+  //lista todos os usuários
+  getUsers: () => users,
   //busca de usuário baseado no id
   getUserById: (id) => users.find((user) => user.id === id),
   //busca de usuário baseado no email
@@ -27,5 +29,10 @@ module.exports = {
     };
     users.push(newUser);
     return newUser;
+  },
+  //deletando um usuário
+  deleteUser(id) {
+    const index = users.findIndex((user) => user.id === id);
+    users.splice(index, 1);
   },
 };
