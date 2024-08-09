@@ -5,9 +5,10 @@ const users = [
   {
     //usuário admin
     id: uuid(),
-    name: "admin",
-    email: "admin@example.com",
+    name: "tiago",
+    email: "tiago@example.com",
     password: "Passw@ord13",
+    role: "admin",
   },
 ];
 
@@ -20,12 +21,13 @@ module.exports = {
   //busca de usuário baseado no email
   getUserByEmail: (email) => users.find((user) => user.email === email),
   //criação de novo usuário, por padrão é standard
-  createUser(email, password) {
+  createUser(name, email, password) {
     const newUser = {
       id: uuid(),
-      name: "standard",
+      name,
       email,
       password,
+      role: "standard",
     };
     users.push(newUser);
     return newUser;
