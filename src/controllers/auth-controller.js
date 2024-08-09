@@ -42,21 +42,21 @@ module.exports = {
   //POST -> /auth/login
   login: (req, res) => {
     const { email, password } = req.body;
-
+    //verificando tipo de dado
     if (!typeIsString(email, password)) {
       return res.status(400).json({ message: "tipo de dado inválido" });
     }
-
+    //pegando usuário através de seu e-mail
     const user = usersModel.getUserByEmail(email);
-
+    //caso usuário não exista
     if (!user) {
       return res.status(400).json({ message: "usuário não encontrado" });
     }
-
+    //verificando se a senha e o email estão corretos
     if (user.email !== email || user.password !== password) {
       return res.status(400).json({ message: "usuário ou senha inválidos" });
     }
-
+    //criando token de autenticação
     const payload = { id: user.id, email: user.email };
     const token = jwt.sign(payload, process.env.JWT_KEY, { expiresIn: "1h" });
     res.json({ token: token, message: `seja bem-vindo(a) ${user.name}` });

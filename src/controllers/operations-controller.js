@@ -72,7 +72,7 @@ module.exports = {
       return res.status(404).json({ message: "usuário não foi encontrado" });
     }
     //deletando usuário
-    const deletedUser = usersModel.deleteUser(id);
+    usersModel.deleteUser(id);
     res.status(200).json({ message: "usuário deletado com sucesso!" });
   },
 };
