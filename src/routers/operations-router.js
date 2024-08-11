@@ -5,19 +5,19 @@ const { isAdmin } = require("../middlewares/isAdmin-middleware");
 const operationsRouter = express.Router();
 
 //rota que devolve todos os usuários cadastrados
-operationsRouter.get("/users", operationsController.getAllUsers);
+operationsRouter.get("/", operationsController.getAllUsers);
 //rota que devolve um usuário em específico através do ID
-operationsRouter.get("/users/:id", operationsController.getUser);
+operationsRouter.get("/:id", operationsController.getUser);
 //rota para atualizar um usuário
 operationsRouter.put(
-  "/users/:id",
+  "/:id",
   authMiddleware,
   isAdmin,
   operationsController.updateUser
 );
 //rota para deletar um usuário
 operationsRouter.delete(
-  "/users/:id",
+  "/:id",
   authMiddleware,
   isAdmin,
   operationsController.deleteUser
