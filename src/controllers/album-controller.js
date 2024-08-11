@@ -1,4 +1,4 @@
-const { typeIsString } = require("../functions/validation");
+const { typeIsString, yearIsValid } = require("../functions/validation");
 const albumModel = require("../models/album-model");
 
 module.exports = {
@@ -26,6 +26,13 @@ module.exports = {
       genres,
       tracks
     );
+    //verificando se a data é um ano válido
+    if (!yearIsValid(release_date))
+      return res.status(400).json({
+        message:
+          "data inválida, insira um ano com 4 digitos (0000), no formato string",
+      });
+    //verificando tipos
     if (!typeIsString(title, artist, release_date))
       return res.status(400).json({ message: "tipo de dado inválido" });
     if (!Array.isArray(genres) || !Array.isArray(tracks))

@@ -40,4 +40,12 @@ module.exports = {
   findAlbumByArtist(artist) {
     return albuns.filter((album) => album.artist === artist);
   },
+  //retornar albuns com o mesmo ano
+  findAlbumByReleaseDate(year) {
+    return albuns.filter((album) => album.release_date === year);
+  },
+  //retornar albuns com o mesmo gênero musical
+  findAlbumByGenre(genre) {
+    return albuns.filter((album) => album.genres.includes(genre));
+  },
 };

@@ -13,6 +13,11 @@ module.exports = {
     return regex.test(email);
   },
 
+  yearIsValid(year) {
+    const regex = /^\d{4,}$/;
+    return regex.test(year);
+  },
+
   //função que verifica se o tipo é string
   typeIsString(...types) {
     return types.every((type) => typeof type === "string");
